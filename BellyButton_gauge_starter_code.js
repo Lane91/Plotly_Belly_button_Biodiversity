@@ -22,7 +22,7 @@ function buildCharts(sample) {
     var sample_values = result.sample_values;
 
     // 3. Create a variable that holds the washing frequency.
-    var level = parseFloat(wfreq) * 20;
+    var frequency = parseFloat(metadata.wfreq);
     // Create the yticks for the bar chart.
 
     // Use Plotly to plot the bar data and layout.

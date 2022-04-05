@@ -61,6 +61,7 @@ function buildCharts(sample) {
     var samples = data.samples;
     // 4. Create a variable that filters the samples for the object with the desired sample number.
     var resultArray = samples.filter(sampleObj => sampleObj.id == sample);
+    
     //  5. Create a variable that holds the first sample in the array.
     var result = resultArray[0];
 
@@ -68,6 +69,13 @@ function buildCharts(sample) {
     var otu_ids = result.otu_ids;
     var otu_labels = result.otu_labels;
     var sample_values = result.sample_values;
+
+    // 3. Create a variable that holds the washing frequency.
+    var metadata = data.metadata;
+    var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
+    var result = resultArray[0];
+    var frequency = result.wfreq;
+    
 
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
@@ -129,8 +137,8 @@ function buildCharts(sample) {
     var gaugeData = [
       {
         type: "indicator",
-        mode: "gauge+number+delta",
-        value: 420,
+        mode: "gauge+number",
+        value: frequency,
         title: { text: "Belly Button Washing Frequency", font: { size: 24 } },
         
         gauge: {
@@ -165,4 +173,3 @@ function buildCharts(sample) {
     Plotly.newPlot("gauge", gaugeData, gaugeLayout);
   });
 }
- 
